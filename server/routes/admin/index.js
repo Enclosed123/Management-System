@@ -14,6 +14,8 @@ module.exports = app => {
   // 删除
   router.delete("/:id", async (req, res) => {
     await req.Model.deleteOne(req.body)
+    // await req.Model.findByIdAndDelete(req.params.id,req.body)
+
     res.send({
       success: true
     })
@@ -35,4 +37,11 @@ module.exports = app => {
     req.Model = require(`../../models/${modelName}`)
     next()
   },router)
+  const multer = require("multer")
+  const upload = multer({ dest:__dirname + "/../../uploads" })
+  app.post("/admin/api/upload",upload.single("file"),async(req,res) => {
+    const file = req.file
+    file.url = `http://localhost:3000/uploads/${file.filename}`
+    res.send(file)
+  })
 }

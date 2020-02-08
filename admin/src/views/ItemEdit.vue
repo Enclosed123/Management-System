@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{id? "编辑":"新建"}}分类</h1>
+    <h1>{{id? "编辑":"新建"}}物品</h1>
 
     <el-form ref="form" label-width="120px" @submit.native.prevent="save">
       <el-form-item label="物品名称">
@@ -10,12 +10,11 @@
       <el-form-item label="图标">
         <el-upload
           class="avatar-uploader"
-          action="https://jsonplaceholder.typicode.com/posts/"
+          :action="$http.defaults.baseURL + '/upload'"
           :show-file-list="false"
-          :on-success="handleAvatarSuccess"
-          :before-upload="beforeAvatarUpload"
+          :on-success="afterUpload"
         >
-          <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+          <img v-if="model.icon" :src="model.icon" class="avatar" />
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
       </el-form-item>
@@ -36,6 +35,11 @@ export default {
     id: {}
   },
   methods: {
+    afterUpload(res){
+      this.$set(this.model,"icon",res.url)
+      // console.log(res);
+      
+    },
     // 保存按钮
     async save() {
       let res;

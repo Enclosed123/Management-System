@@ -1,10 +1,15 @@
 <!-- 组件说明 -->
 <template>
   <div class>
-    <h1>分类列表</h1>
+    <h1>物品列表</h1>
     <el-table :data="items">
       <el-table-column prop="_id" label="ID"></el-table-column>
       <el-table-column prop="name" label="物品名称"></el-table-column>
+      <el-table-column prop="icon" label="图标">
+        <template slot-scope="scope">
+          <img :src="scope.row.icon" style="height:3rem" alt="">
+        </template>
+      </el-table-column>
       <el-table-column label="操作" width="200">
         <template slot-scope="scope">
           <el-button @click="$router.push(`/items/edit/${scope.row._id}`)" type="primary" size="big">编辑</el-button>
