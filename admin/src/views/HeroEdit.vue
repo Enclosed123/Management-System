@@ -73,9 +73,9 @@
           <el-form-item label="团战思路">
             <el-input v-model="model.teamTips"></el-input>
           </el-form-item>
-          <el-form-item label="英雄关系">
+          <!-- <el-form-item label="英雄关系">
             <el-input v-model="model.partners"></el-input>
-          </el-form-item>
+          </el-form-item> -->
         </el-tab-pane>
         <el-tab-pane label="技能" name="skills">
           <el-button type="primary" size="mini" @click="model.skills.push({})">
@@ -91,7 +91,7 @@
                   class="avatar-uploader"
                   :action="$http.defaults.baseURL + '/upload'"
                   :show-file-list="false"
-                  :on-success="afterUpload"
+                  :on-success="res=>$set(item,'icon',res.url)"
                 >
                   <img v-if="item.icon" :src="item.icon" class="avatar" />
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -101,14 +101,17 @@
                 <el-input v-model="item.description"></el-input>
               </el-form-item>
               <el-form-item label="小提示">
-                <el-input v-model="item.tips" type="textarea" ></el-input>
+                <el-input v-model="item.tips" type="textarea"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="danger" @click="model.skills.splice(index,1)"><span>删除</span></el-button>
               </el-form-item>
             </el-col>
           </el-row>
         </el-tab-pane>
       </el-tabs>
       <el-form-item style="margin-top:1rem">
-        <el-button type="primary" native-type="submit" @click="save">保存</el-button>
+        <el-button type="primary" @click="save">保存</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -129,7 +132,7 @@ export default {
           survive: 0
         },
         skills: []
-      }
+      },
     };
   },
   props: {
@@ -137,10 +140,16 @@ export default {
   },
   methods: {
     afterUpload(res) {
-      // this.$set(this.model,"avatar",res.url)
-      this.model.avatar = res.url;
-      console.log(res);
+      this.$set(this.model, "avatar", res.url);
+      // this.item = res.url;
+      // console.log(res);
     },
+    // skillsIcon(res) {
+    //   // this.$set(this.model,"icon",res.url)
+    //   this.model.icon = res.url;
+    //   console.log(res);
+    //   console.log(this.model.icon)
+    // },
     // 保存按钮
     async save() {
       let res;
@@ -191,14 +200,14 @@ export default {
 .avatar-uploader-icon {
   font-size: 28px;
   color: #8c939d;
-  width: 178px;
-  height: 178px;
-  line-height: 178px;
+  width: 5rem;
+  height: 5rem;
+  line-height: 5rem;
   text-align: center;
 }
 .avatar {
-  width: 178px;
-  height: 178px;
+  width: 5rem;
+  height: 5rem;
   display: block;
 }
 </style>

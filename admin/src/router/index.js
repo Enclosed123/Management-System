@@ -1,14 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import Main from '../views/Main.vue'
+// 分类页面引入
 import CategoryEdit from '../views/CategoryEdit.vue'
 import CategoryList from '../views/CategoryList'
-
+// 物品页面引入
 import ItemEdit from '../views/ItemEdit'
 import ItemList from '../views/ItemList'
-
+// 英雄页面引入
 import HeroEdit from '../views/HeroEdit'
 import HeroList from '../views/HeroList'
+// 文章页面引入
+import ArticleEdit from '../views/ArticleEdit'
+import ArticleList from '../views/ArticleList'
 
 Vue.use(VueRouter)
 
@@ -18,15 +22,23 @@ const routes = [
     name: 'main',
     component: () => import(/* webpackChunkName: "about" */ '../views/Main.vue'),
     children: [
+      // 分类页面引入
       { path: "/categories/create", component: CategoryEdit },
-      { path: "/categories/edit/:id", component: CategoryEdit,props:true },
+      { path: "/categories/edit/:id", component: CategoryEdit, props: true },
       { path: "/categories/list", component: CategoryList },
+      // 物品页面引入
       { path: "/items/create", component: ItemEdit },
-      { path: "/items/edit/:id", component: ItemEdit,props:true },
+      { path: "/items/edit/:id", component: ItemEdit, props: true },
       { path: "/items/list", component: ItemList },
+      // 英雄页面引入
       { path: "/heroes/create", component: HeroEdit },
-      { path: "/heroes/edit/:id", component: HeroEdit,props:true },
-      { path: "/heroes/list", component: HeroList }
+      { path: "/heroes/edit/:id", component: HeroEdit, props: true },
+      { path: "/heroes/list", component: HeroList },
+      // 文章页面引入
+      { path: "/articles/create", component: ArticleEdit },
+      { path: "/articles/edit/:id", component: ArticleEdit, props: true },
+      { path: "/articles/list", component: ArticleList }
+
     ]
   },
   // {
