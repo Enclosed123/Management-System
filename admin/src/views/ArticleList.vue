@@ -4,11 +4,11 @@
     <h1>分类列表</h1>
     <el-table :data="items">
       <el-table-column prop="_id" label="ID"></el-table-column>
-      <el-table-column prop="parent.name" label="上级分类"></el-table-column>
-      <el-table-column prop="name" label="分类名称"></el-table-column>
+      <el-table-column prop="parent.title" label="上级分类"></el-table-column>
+      <el-table-column prop="title" label="分类名称"></el-table-column>
       <el-table-column label="操作" width="200">
         <template slot-scope="scope">
-          <el-button @click="$router.push(`/categories/edit/${scope.row._id}`)" type="primary" size="big">编辑</el-button>
+          <el-button @click="$router.push(`/articles/edit/${scope.row._id}`)" type="primary" size="big">编辑</el-button>
           <el-button @click="remove(scope.row)" type="primary" size="big">删除</el-button>
         </template>
       </el-table-column>
@@ -28,7 +28,7 @@ export default {
   computed: {},
   methods: {
     async fetch() {
-      const res = await this.$http.get("rest/categories");
+      const res = await this.$http.get("rest/articles");
       this.items = res.data;
     },
     // // 编辑键跳转
@@ -38,13 +38,13 @@ export default {
     // 删除键
     
     async remove(row){
-      this.$confirm(`是否删除"${row.name}"`,"提示",{
+      this.$confirm(`是否删除"${row.title}"`,"提示",{
         confirmButtonText:"确定",
         cancelButtonText:"取消",
         type:"warning"
     
       }).then(async ()=>{
-        const res = await this.$http.delete(`rest/categories/${row._id}`);
+        const res = await this.$http.delete(`rest/articles/${row._id}`);
         console.log(res);
         this.$message({
           type:"success",
