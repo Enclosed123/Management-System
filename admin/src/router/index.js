@@ -13,6 +13,9 @@ import HeroList from '../views/HeroList'
 // 文章页面引入
 import ArticleEdit from '../views/ArticleEdit'
 import ArticleList from '../views/ArticleList'
+// 轮播图广告页面引入
+import AdEdit from '../views/AdEdit'
+import AdList from '../views/AdList'
 
 Vue.use(VueRouter)
 
@@ -37,8 +40,11 @@ const routes = [
       // 文章页面引入
       { path: "/articles/create", component: ArticleEdit },
       { path: "/articles/edit/:id", component: ArticleEdit, props: true },
-      { path: "/articles/list", component: ArticleList }
-
+      { path: "/articles/list", component: ArticleList },
+      // 轮播图广告页面引入
+      { path: "/ads/create", component: AdEdit },
+      { path: "/ads/edit/:id", component: AdEdit, props: true },
+      { path: "/ads/list", component: AdList }
     ]
   },
   // {
