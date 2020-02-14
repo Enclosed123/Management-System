@@ -16,6 +16,9 @@ import ArticleList from '../views/ArticleList'
 // 轮播图广告页面引入
 import AdEdit from '../views/AdEdit'
 import AdList from '../views/AdList'
+// 管理员页面引入
+import AdminUserEdit from '../views/AdminUserEdit'
+import AdminUserList from '../views/AdminUserList'
 
 Vue.use(VueRouter)
 
@@ -44,7 +47,11 @@ const routes = [
       // 轮播图广告页面引入
       { path: "/ads/create", component: AdEdit },
       { path: "/ads/edit/:id", component: AdEdit, props: true },
-      { path: "/ads/list", component: AdList }
+      { path: "/ads/list", component: AdList },
+      // 管理员页面引入
+      { path: "/admin_users/create", component: AdminUserEdit },
+      { path: "/admin_users/edit/:id", component: AdminUserEdit, props: true },
+      { path: "/admin_users/list", component: AdminUserList }
     ]
   },
   // {
