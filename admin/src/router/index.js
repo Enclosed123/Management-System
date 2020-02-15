@@ -24,9 +24,14 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path:"/login",
+    name:"login",
+    component:() => import(/* webpackChunkName: "login" */ "../views/Login.vue")
+  },
+  {
     path: '/',
     name: 'main',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Main.vue'),
+    component: () => import(/* webpackChunkName: "main" */ '../views/Main.vue'),
     children: [
       // 分类页面引入
       { path: "/categories/create", component: CategoryEdit },
