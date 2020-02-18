@@ -29,6 +29,79 @@ $colors: (
   "black": #000
 );
 
-@each $var in list {
-  
+@each $colorKey, $color in $colors {
+  .text-#{$colorKey} {
+    color: #{$color};
+  }
+  .bg-#{$colorKey} {
+    background-color: #{$color};
+  }
+}
+
+// text align
+
+@each $var in (left, center, right) {
+  .text-#{$var} {
+    text-align: #{$var};
+  }
+}
+
+// font size
+$base-font-size: 1rem;
+$font-sizes: (
+  xs: 0.7692rem, // 10px
+  sm: 0.9231rem, // 12px
+  md: 1rem, // 13px
+  lg: 1.0769rem, // 14px
+  xl: 1.2308rem, // 16px
+);
+
+@each $sizeKey,$size in $font-sizes {
+  .fs-#{$sizeKey}{
+    font-size:#{$size};
+  }
+}
+
+
+// flex
+.d-flex{
+  display: flex;
+}
+.flex-column{
+  flex-direction: column;
+}
+
+$flex-jc:(
+  start:flex-start,
+  center:center,
+  end:flex-end,
+  between:space-between,
+  around:space-around,
+);
+
+@each $key,$value in $flex-jc {
+  .jc-#{$key}{
+    justify-content: #{$value};
+  }
+}
+
+$flex-ai:(
+  start:flex-start,
+  center:center,
+  end:flex-end,
+  stretch:stretch,
+);
+
+@each $key,$value in $flex-ai {
+  .ai-#{$key}{
+    justify-content: #{$value};
+  }
+}
+
+.flex-1{
+  flex:1
+}
+
+.flex-grow-1{
+  flex-grow:1
 }
