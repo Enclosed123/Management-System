@@ -24,11 +24,14 @@ $colors: (
   "primary": #db9e3f,
   "white": #fff,
   "light": #f9f9f9,
+  "light-1": #d4d9de,
   "grey": #999,
   "grey-1": #666,
   "dark": #222,
   "black": #000
 );
+
+$border-color: map-get($colors, "light-1");
 
 @each $colorKey, $color in $colors {
   .text-#{$colorKey} {
@@ -43,7 +46,7 @@ $colors: (
 
 @each $var in (left, center, right) {
   .text-#{$var} {
-    text-align: #{$var} !important
+    text-align: #{$var} !important;
   }
 }
 
@@ -76,6 +79,10 @@ $font-sizes: (
 }
 .flex-column {
   flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 $flex-jc: (
@@ -167,19 +174,28 @@ $spacing-sizes: (
 
 // nav
 .nav {
-  padding-top: 0.8rem;
-  padding-bottom: 0.8rem;
+  display: flex;
   .nav-item {
     border-bottom: 3px solid transparent;
     padding-bottom: 0.2rem;
+    color: map-get($map: $colors, $key: "primary");
     &.active {
-      border-bottom: 3px solid #fff;
+      border-bottom: 3px solid map-get($map: $colors, $key: "primary");
     }
   }
-
+  &.nav-inverse {
+    padding-top: 0.8rem;
+    padding-bottom: 0.4rem;
+    .nav-item {
+      color: map-get($map: $colors, $key: "white");
+      &.active {
+        border-bottom-color: map-get($map: $colors, $key: "white");
+      }
+    }
+  }
 }
 
 // .w-100
-.w-100{
+.w-100 {
   width: 100%;
 }

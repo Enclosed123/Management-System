@@ -1,7 +1,7 @@
 <!-- 组件说明 -->
 <template>
   <div class>
-    <div class="topbar py-1 px-3 bg-black d-flex">
+    <div class="topbar py-2 px-3 bg-black d-flex">
       <img src="../assets/logo.png" height="28px" alt />
       <div class="px-2 flex-1">
         <div class="text-white fs-sm">王者荣耀</div>
@@ -10,7 +10,7 @@
       <button type="button" class="btn bg-primary fs-xs my-1">立即下载</button>
     </div>
     <div class="bg-primary text-white">
-      <div class="nav d-flex jc-around fs-sm">
+      <div class="nav nav-inverse jc-around fs-lg">
         <div class="nav-item active">
           <router-link to="/" class="nav-link" tag="div">首页</router-link>
         </div>
