@@ -4,6 +4,6 @@ module.exports = app =>{
     useMongoClient:true
     // useNewUrlParser:true
   })
-  
+  require("require-all")(__dirname + "/../models")
 }
 

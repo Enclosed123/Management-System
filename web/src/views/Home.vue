@@ -15,54 +15,187 @@
       </div>
     </div>
     <!-- end of nav icons -->
-    <Card title="新闻资讯" icon="menu">
-      <div class="nav jc-between">
-        <div class="nav-item active">
-          <div class="nav-link">热门</div>
+
+    <List-Card icon="menu" title="新闻资讯" :categories="newsCats">
+      <template #items="{category}">
+        <div class="py-2" v-for="(news, index) in category.newList" :key="index">
+          <span>{{news.categoryName}}</span>
+          <span>|</span>
+          <span>{{news.title}}</span>
+          <span>{{news.date}}</span>
         </div>
-        <div class="nav-item">
-          <div class="nav-link">热门</div>
-        </div>
-        <div class="nav-item">
-          <div class="nav-link">热门</div>
-        </div>
-        <div class="nav-item">
-          <div class="nav-link">热门</div>
-        </div>
-        <div class="nav-item">
-          <div class="nav-link">热门</div>
-        </div>
-      </div>
-      <swiper class="pt-2">
-        <swiper-slide v-for="(item, index) in 5" :key="index">
-          <div class="py-2" v-for="(item, index) in 5" :key="index">
-            <span>[公告]</span>
-            <span>|</span>
-            <span>2月18日全服不停机更新公告</span>
-          </div>
-        </swiper-slide>
-      </swiper>
-    </Card>
+      </template>
+    </List-Card>
   </div>
 </template>
 
 <script>
 //import x from ''
-import { swiper, swiperSlide } from "vue-awesome-swiper";
 // components
 import Swiper from "../components/Swiper";
-import Card from "../components/Card";
+import ListCard from "../components/ListCard";
 
 export default {
   name: "home",
   components: {
     Swiper,
-    swiper,
-    swiperSlide,
-    Card
+    ListCard
   },
   data() {
-    return {};
+    return {
+      newsCats: [
+        {
+          name: "热门",
+          newList: [
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            }
+          ]
+        },
+        {
+          name: "热门",
+          newList: [
+            {
+              categoryName: "x",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            }
+          ]
+        },
+        {
+          name: "热门",
+          newList: [
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            }
+          ]
+        },
+        {
+          name: "热门",
+          newList: [
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            }
+          ]
+        },
+        {
+          name: "热门",
+          newList: [
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            },
+            {
+              categoryName: "公告",
+              title: "2月18日全服不停机更新公告",
+              date: "02/17"
+            }
+          ]
+        }
+      ]
+    };
   },
   computed: {},
   methods: {}
