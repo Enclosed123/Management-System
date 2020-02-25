@@ -18,11 +18,11 @@
 
     <List-Card icon="menu" title="新闻资讯" :categories="newsCats">
       <template #items="{category}">
-        <div class="py-2" v-for="(news, index) in category.newList" :key="index">
-          <span>{{news.categoryName}}</span>
-          <span>|</span>
-          <span>{{news.title}}</span>
-          <span>{{news.date}}</span>
+        <div class="py-2 d-flex" v-for="(news, index) in category.newsList" :key="index">
+          <span class="text-info">[{{news.categoryName}}]</span>
+          <span class="px-2">|</span>
+          <span class="text-dark flex-1 text-ellipsis pr-2">{{news.title}}</span>
+          <span class="text-grey-1">{{news.createdAt | date}}</span>
         </div>
       </template>
     </List-Card>
@@ -34,6 +34,7 @@
 // components
 import Swiper from "../components/Swiper";
 import ListCard from "../components/ListCard";
+import dayjs from "dayjs"
 
 export default {
   name: "home",
@@ -43,162 +44,27 @@ export default {
   },
   data() {
     return {
-      newsCats: [
-        {
-          name: "热门",
-          newList: [
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            }
-          ]
-        },
-        {
-          name: "热门",
-          newList: [
-            {
-              categoryName: "x",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            }
-          ]
-        },
-        {
-          name: "热门",
-          newList: [
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            }
-          ]
-        },
-        {
-          name: "热门",
-          newList: [
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            }
-          ]
-        },
-        {
-          name: "热门",
-          newList: [
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            },
-            {
-              categoryName: "公告",
-              title: "2月18日全服不停机更新公告",
-              date: "02/17"
-            }
-          ]
-        }
-      ]
+      newsCats: []
     };
   },
   computed: {},
-  methods: {}
+  methods: {
+    async fetchNewsCats() {
+      const res = await this.$http.get("news/list");
+      this.newsCats = res.data;
+      console.log(res.data[1].newsList[0].title);
+      console.log(res.data);
+    }
+  },
+  created() {
+    this.fetchNewsCats();
+  },
+  filters:{
+    date(val){
+      return dayjs(val).format("MM/DD")
+    }
+  }
+
 };
 </script>
 <style lang="scss">

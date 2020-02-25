@@ -28,7 +28,8 @@ $colors: (
   "grey": #999,
   "grey-1": #666,
   "dark": #222,
-  "black": #000
+  "black": #000,
+  "info": #464f73
 );
 
 $border-color: map-get($colors, "light-1");
@@ -42,6 +43,13 @@ $border-color: map-get($colors, "light-1");
   }
 }
 
+// text ellipsis
+.text-ellipsis {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 // text align
 
 @each $var in (left, center, right) {
