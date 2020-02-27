@@ -41,6 +41,13 @@
       "unicode_decimal": 58911
     },
     {
+      "icon_id": "8739885",
+      "name": "返 回",
+      "font_class": "fanhui",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
       "icon_id": "13044692",
       "name": "more read",
       "font_class": "moreread",

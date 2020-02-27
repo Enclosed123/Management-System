@@ -13,7 +13,12 @@
           <div class="nav-link">{{category.name}}</div>
         </div>
       </div>
-      <swiper class="pt-2 d-flex" ref="list" @slide-change="() => active = $refs.list.swiper.realIndex">
+      <swiper
+        class="pt-2 d-flex"
+        ref="list"
+        @slide-change="() => active = $refs.list.swiper.realIndex"
+        :options="{autoHeight:true}"
+      >
         <swiper-slide v-for="(category, index) in categories" :key="index">
           <slot name="items" :category="category"></slot>
         </swiper-slide>
@@ -40,7 +45,7 @@ export default {
   },
   data() {
     return {
-      active: 0,
+      active: 0
     };
   },
   computed: {},

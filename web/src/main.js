@@ -5,7 +5,7 @@ import App from './App.vue'
 Vue.config.productionTip = false
 
 import "./style.scss"
-import "./assets/font_wo35fwx03i/iconfont.css"
+import "./assets/font_05rknmmvq0r3/iconfont.css"
 import router from './router'
 
 import axios from 'axios'
