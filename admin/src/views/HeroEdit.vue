@@ -22,6 +22,17 @@
               <i v-else class="el-icon-plus avatar-uploader-icon"></i>
             </el-upload>
           </el-form-item>
+          <el-form-item label="Banner">
+            <el-upload
+              class="avatar-uploader"
+              :action="$http.defaults.baseURL + '/upload'"
+              :show-file-list="false"
+              :on-success="afterUpload"
+            >
+              <img v-if="model.avatar" :src="model.avatar" class="avatar" />
+              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            </el-upload>
+          </el-form-item>
           <el-form-item label="类型">
             <el-select v-model="model.categories" multiple>
               <el-option
@@ -75,7 +86,7 @@
           </el-form-item>
           <!-- <el-form-item label="英雄关系">
             <el-input v-model="model.partners"></el-input>
-          </el-form-item> -->
+          </el-form-item>-->
         </el-tab-pane>
         <el-tab-pane label="技能" name="skills">
           <el-button type="primary" size="mini" @click="model.skills.push({})">
@@ -104,7 +115,9 @@
                 <el-input v-model="item.tips" type="textarea"></el-input>
               </el-form-item>
               <el-form-item>
-                <el-button type="danger" @click="model.skills.splice(index,1)"><span>删除</span></el-button>
+                <el-button type="danger" @click="model.skills.splice(index,1)">
+                  <span>删除</span>
+                </el-button>
               </el-form-item>
             </el-col>
           </el-row>
@@ -132,7 +145,7 @@ export default {
           survive: 0
         },
         skills: []
-      },
+      }
     };
   },
   props: {

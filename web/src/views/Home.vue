@@ -35,16 +35,18 @@
     <List-Card icon="card-hero" title="英雄列表" :categories="heroCats">
       <template #items="{category}">
         <div class="d-flex flex-wrap text-center" style="margin:0 -0.5rem">
-          <div
+          <router-link
             class="p-2"
+            tag="div"
+            :to="`/heroes/${hero._id}`"
             style="width:20%"
             v-for="(hero, index) in category.heroList"
             :key="index"
           >
             <img :src="hero.avatar" alt class="w-100" />
             <div>{{hero.name}}</div>
+          </router-link>
           </div>
-        </div>
       </template>
     </List-Card>
   </div>

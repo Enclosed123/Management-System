@@ -43,5 +43,9 @@ export default {
   border: none;
   border-radius: 0.1538rem;
 }
-
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
 </style>

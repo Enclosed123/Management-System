@@ -7,12 +7,30 @@
       <div class="text-grey fs-xs">2020-02-24</div>
     </div>
     <div class="px-3 body" v-html="model.body"></div>
+    <div class="px-3 py-2">
+      <div class="ai-center">
+        <i class="iconfont icon-menu"></i>
+        <strong class="ml-1" style="color:#4394e4">相关资讯</strong>
+      </div>
+      <div class=" pb-2" style="">
+        <router-link
+          class="py-1"
+          :to="`/articles/${item._id}`"
+          tag="div"
+          v-for="(item, index) in model.related"
+          :key="index"
+        >{{item.title}}</router-link>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 //import x from ''
 export default {
+  watch: {
+    id:"fetch",
+  },
   props: {
     id: { required: true }
   },
@@ -29,7 +47,7 @@ export default {
       this.model = res.data;
     },
     back() {
-      this.$router.go(-1);
+      this.$router.push("/");
     }
   },
   created() {
