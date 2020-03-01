@@ -5,6 +5,7 @@ module.exports = app => {
   })
   const jwt = require("jsonwebtoken")
   const AdminUser = require("../../models/AdminUser")
+  const assert = require("http-assert")
 
 
   // 创建资源
@@ -30,8 +31,12 @@ module.exports = app => {
   // 资源列表
   router.get('/', async (req, res, next) => {
     const token = String(req.headers.authorization || "").split(" ").pop()
+    assert(token,401,"请先登录")
     const { id } = jwt.verify(token, app.get("secret"))
+    assert(id,401,"请先登录")
+
     req.user = await AdminUser.findById(id)
+    assert(req.user,401,"请先登录")
     await next()
   }, async (req, res) => {
     const queryOptions = {}
@@ -64,20 +69,29 @@ module.exports = app => {
     const { username, password } = req.body
     // 1.根据用户名查找用户
     const user = await AdminUser.findOne({ username }).select("+password")
-    if (!user) {
-      return res.status(422).send({
-        message: "用户名不存在"
-      })
-    }
+    assert(user, 422, "用户名不存在")
+    // if (!user) {
+    //   return res.status(422).send({
+    //     message: "用户名不存在"
+    //   })
+    // }
     // 2.校验密码
     const isValid = require("bcryptjs").compareSync(password, user.password)
-    if (!isValid) {
-      return res.status(422).send({
-        message: "密码错误"
-      })
-    }
+    assert(isValid,422,"密码错误")
+    // if (!isValid) {
+    //   return res.status(422).send({
+    //     message: "密码错误"
+    //   })
+    // }
     // 3.返回token
     const token = jwt.sign({ id: user._id }, app.get("secret"))
     res.send({ token })
+  })
+
+  // 错误处理函数
+  app.use(async (err, req, res, next) => {
+    res.status(err.statusCode || 500).send({
+      message: err.message
+    })
   })
 }
