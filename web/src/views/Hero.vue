@@ -1,6 +1,6 @@
 <!-- 组件说明 -->
 <template>
-  <div class v-if="model">
+  <div class="page-hero" v-if="model">
     <div class="topbar py-2 px-3 bg-black d-flex">
       <img src="../assets/logo.png" height="28px" alt />
       <div class="px-2 py-2 flex-1 fs-sm">
@@ -9,7 +9,7 @@
       </div>
       <div class="py-2 fs-xs" style="color:white">更多英雄 &gt;</div>
     </div>
-    <div>{{model.name}}</div>
+    <div class="top" :style="{'background-image':`url(${model.banner})`}"></div>
   </div>
 </template>
 
@@ -29,12 +29,20 @@ export default {
   methods: {
     async fetch() {
       const res = await this.$http.get(`/heroes/${this.id}`);
-      this.model = res.data
+      this.model = res.data;
     }
   },
   // 生命周期
   created() {
-    this.fetch()
-  },
+    this.fetch();
+  }
 };
 </script>
+<style lang="scss">
+  .page-hero{
+    .top{
+      height: 50vw;
+      background-size: auto 100%;
+    }
+  }
+</style>

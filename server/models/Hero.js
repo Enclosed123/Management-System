@@ -3,6 +3,8 @@
 const mongoose = require("mongoose")
 const schema = new mongoose.Schema({
   name: { type: String },
+  delay: { type: String },
+  cost: { type: String },
   avatar: { type: String },
   banner: { type: String },
   title: { type: String },
